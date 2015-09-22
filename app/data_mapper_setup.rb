@@ -1,11 +1,10 @@
 require 'data_mapper'
+
 require './app/models/link' # require each model individually - the path may vary depending on your file structure.
 
 env = ENV['RACK_ENV'] || 'development'
-
 # we're telling datamapper to use a postgres database on localhost. The name will be "bookmark_manager_test" or "bookmark_manager_development" depending on the environment
-DataMapper.setup(:default, "postgres://localhost/bookmark_manager_development")
-
+DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
 # After declaring your models, you should finalise them
 DataMapper.finalize
