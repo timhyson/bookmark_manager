@@ -1,5 +1,3 @@
-require './data_mapper_setup.rb'
-
 feature 'Viewing links' do
 
   scenario 'I can see existing links on the links page' do
