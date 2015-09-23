@@ -5,6 +5,8 @@ class User
 
   include DataMapper::Resource
 
+  attr_reader :password
+
   property :id, Serial
   property :email, String
   # this will store both the password and the salt
@@ -22,5 +24,5 @@ class User
   def password=(password)
     self.password_digest = BCrypt::Password.create(password)
   end
-  
+
 end
