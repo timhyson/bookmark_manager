@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
 ruby '2.2.3'
-gem 'sinatra'
+gem 'bcrypt'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pry'
+gem 'sinatra'
 
 group :test do
   gem 'capybara'
