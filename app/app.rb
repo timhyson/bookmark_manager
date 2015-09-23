@@ -40,6 +40,7 @@ get '/tags/:name' do
 end
 
 get '/users/new' do
+  @user = User.new
   erb :'users/new'
 end
 
@@ -51,7 +52,7 @@ post '/users' do
                   password_confirmation: params[:password_confirmation])
   if @user.save # save returns true/false depending on whether the model is successfully saved to the database.
     session[:user_id] = @user.id
-    redirect to('/links')
+    redirect to('/')
     # if it's not valid,
     # we'll render the sign up form again
   else
