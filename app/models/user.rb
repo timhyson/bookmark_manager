@@ -18,7 +18,7 @@ class User
 
   property :id, Serial
 
-  property :email, String, required: true
+  property :email, String, required: true, unique: true
   validates_presence_of :email
 
   property :password_digest, Text
