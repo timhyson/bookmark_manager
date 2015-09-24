@@ -7,6 +7,7 @@ class User
 
   attr_reader :password
   attr_accessor :password_confirmation
+
   validates_confirmation_of :password
   # validates_confirmation_of is a DataMapper method
   # provided especially for validating confirmation passwords!
