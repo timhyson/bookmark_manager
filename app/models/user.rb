@@ -2,7 +2,6 @@
 require 'bcrypt' # make sure 'bcrypt' is in your Gemfile
 
 class User
-
   include DataMapper::Resource
 
   attr_reader :password

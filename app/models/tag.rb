@@ -5,5 +5,4 @@ class Tag
   property :name, String
 
   has n, :links, through: Resource
-
 end
