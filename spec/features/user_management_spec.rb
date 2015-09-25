@@ -1,4 +1,5 @@
 require_relative '../factories/user'
+# require_relative '../helpers/session'
 
 feature 'User sign up' do
 
@@ -47,13 +48,6 @@ feature 'User sign up' do
     expect(page).to have_content('Email is already taken')
   end
 
-  def sign_up_as(user)
-    visit '/users/new'
-    fill_in :email,    with: user.email
-    fill_in :password, with: user.password
-    fill_in :password_confirmation, with: user.password_confirmation
-    click_button 'Sign Up'
-  end
 end
 
 feature 'User signing in' do
@@ -69,10 +63,21 @@ feature 'User signing in' do
     expect(page).to have_content "Welcome, #{user.email}"
   end
 
-  def sign_in(email:, password:)
-    visit '/sessions/new'
-    fill_in :email,    with: user.email
-    fill_in :password, with: user.password
-    click_button 'Sign In'
+end
+
+feature 'User signs out' do
+
+  let(:user) do
+    User.create(email: 'test@test.com',
+                password: 'test',
+                password_confirmation: 'test')
   end
+
+  scenario 'while being signed in' do
+    sign_in(email: user.email, password: user.password)
+    click_button 'Sign Out'
+    expect(page).to have_content('goodbye!')
+    expect(page).not_to have_content('Welcome, test@test.com')
+  end
+
 end

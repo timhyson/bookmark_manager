@@ -2,6 +2,7 @@ require_relative 'data_mapper_setup'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions
+  use Rack::MethodOverride
   register Sinatra::Flash
   set :session_secret, 'super secret'
   set :views, proc {File.join(root,'..','/app/views')}
@@ -31,6 +32,12 @@ post '/links' do
     link.save
   end                                   # 4. Saving the link
   redirect to('/links')
+end
+
+delete '/links' do
+  session[:user_id] = nil
+  flash.next[:notice] = :goodbye!
+  redirect to('/sessions/new')
 end
 
 get '/tags/:name' do

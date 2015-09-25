@@ -5,8 +5,17 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div id='notice'>
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
     <% if current_user %>
       Welcome, <%= current_user.email %>!
+      <form method='post' action='/links'>
+        <input type='hidden' name='_method' value='delete'>
+        <input type='submit' value='Sign Out'>
+      </form>
     <% end %>
 
     <% if flash[:errors] && !flash[:errors].empty? %>
@@ -17,7 +26,7 @@
         <% end %>
       </ul>
     <% end %>
-    
+
     <%= yield %>
   </body>
 </html>

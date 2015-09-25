@@ -12,10 +12,13 @@ require 'rspec'
 
 Capybara.app = BookmarkManager
 
+require_relative 'helpers/session'
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Capybara::DSL
   config.include FactoryGirl::Syntax::Methods
+  config.include SessionHelpers
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
